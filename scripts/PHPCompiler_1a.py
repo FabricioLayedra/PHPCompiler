@@ -2,6 +2,8 @@ import ply.lex as lex
 
 delimeters = ('LPAREN', 'RPAREN', 'LBRACKET', 'RBRACKET')
 
+#Definicion de tokens para palabras reservadas
+
 tokens = delimeters + (
     "CHAR",
     "NUM",
@@ -17,10 +19,17 @@ tokens = delimeters + (
     "QUOTE",
     "DOT",
     "CONDITIONAL",
+    "GREATEREQUAL",
+    "LESSEQUAL",
+    "DEQUAL",
+    "ISEQUAL",
+    "AND",
+    "PLUSPLUS",
+    "MINUSMINUS"
+    "OR"
+    "XOR"
     "ARITMETHIC_OP"
 )
-
-
 
 t_ignore         = " \t"
 t_CHAR           = r"[a-z]"
@@ -30,7 +39,10 @@ t_RBRACKET       = r'\]'
 t_LBRACKET       = r'\['
 t_RCURLYBRACKET  = r'\}'
 t_LCURLYBRACKET  = r'\{'
+t_LESS           = r'<'
+t_GREATER        = r'>'
 t_EQUALS         = r'='
+t_DISTINT        = r'!'
 t_SEMICOLON      = r';'
 t_DOT            = r'\.'
 t_ECHO           = r'echo'
@@ -74,6 +86,44 @@ def t_error(t):
     print (t.lexer.current_state)
     print (dir(t.lexer))
     raise TypeError("unknown char '%s'"%(t.value))
+
+def t_ISEQUAL(t):
+    r'=='
+    return t
+
+def t_DEQUAL(t):
+    r'!=|<>'
+    return t
+
+def t_LESSEQUAL(t):
+    r'<='
+    return t
+
+def t_GREATEREQUAL(t):
+    r'>='
+    return t
+
+def t_MINUSMINUS (t):
+    r'--'
+    return t
+
+def t_PLUSPLUS(t):
+    r'\+\+'
+
+def t_AND(t):
+    r'and|AND|\&\&'
+    return t
+
+def t_OR(t):
+    r'or|\|\||OR'
+    return t
+
+def t_XOR(t):
+    r'xor'
+    return t
+
+
+
 
 input_data = input("Ingrese código para verificar léxico en PHP (Ingrese SALIR para terminar): ")
 
