@@ -28,6 +28,7 @@ tokens = delimeters + (
     "MINUSMINUS",
     "OR",
     "XOR",
+    "BOOLEAN_OR",
     "ARRAY",
     "CASE",
     "LESS",
@@ -57,6 +58,7 @@ t_DISTINT        = r'\!'
 t_SEMICOLON      = r'\;'
 t_DOT            = r'\.'
 t_ECHO           = r'echo'
+t_BOOLEAN_OR    =  r'\|\|'
 
 
 def t_newline(t):
