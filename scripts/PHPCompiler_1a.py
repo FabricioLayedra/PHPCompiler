@@ -194,14 +194,5 @@ def t_FUNCTION(t):
     return t
 
 
-input_data = input("Ingrese código para verificar léxico en PHP (Ingrese SALIR para terminar): ")
-
-while(input_data!="SALIR"):
-    lex.lex()
-    lex.input(input_data)
-    for tok in iter(lex.token, None):
-        print (repr(tok.type), repr(tok.value))
-    input_data = input("Ingrese código para verificar léxico en PHP: ")
-
 
 
